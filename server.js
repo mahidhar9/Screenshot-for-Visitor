@@ -111,11 +111,11 @@ ctx.fillText(passcode, width / 2, 458); // Center the text within the rectangle
 const express = require('express');
 const app = express();
 app.get('/generate-image', async (req, res) => {
-    const { name, passcode, date, address } = req.query;
-    if (!name || !passcode || !date || !address) {
+    const { name, passcode, date } = req.query;
+    if (!name || !passcode || !date) {
         return res.status(400).send('Missing parameters');
     }
-    const imageBuffer = await generateInviteImage({ name, passcode, date, address });
+    const imageBuffer = await generateInviteImage({ name, passcode, date});
     res.setHeader('Content-Type', 'image/png');
     res.send(imageBuffer);
 });
